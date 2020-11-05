@@ -12,20 +12,20 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [{
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-          },
-          {
-            loader: 'postcss-loader',
+          loader: 'style-loader',
+        },
+        {
+          loader: 'css-loader',
+        },
+        {
+          loader: 'postcss-loader',
 
-          }, {
-            loader: 'sass-loader',
-          }
+        }, {
+          loader: 'sass-loader',
+        },
         ],
       },
 
     ],
   },
-}
+};
