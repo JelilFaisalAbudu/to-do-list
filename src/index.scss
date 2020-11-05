@@ -1,3 +1,22 @@
-body {
-  background-color: blue;
+
+.projectsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  .project {
+    background-color: aquamarine;
+    // flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.new-project-btn {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  background-color: blueviolet;
 }
