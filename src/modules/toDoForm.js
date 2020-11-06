@@ -1,21 +1,31 @@
 const toDoForm = () => {
   const body = document.querySelector('body');
   const form = document.createElement('form');
+  form.setAttribute('class', 'todo-form');
   const title = document.createElement('input');
   title.setAttribute('type', 'text');
+  title.setAttribute('class', 'todo-form-title');
   const description = document.createElement('input');
   description.setAttribute('type', 'text');
+  description.setAttribute('class', 'todo-form-description');
   const dueDate = document.createElement('input');
   dueDate.setAttribute('type', 'datetime-local');
+  dueDate.setAttribute('class', 'todo-form-duedate');
   const priority = document.createElement('input');
   priority.setAttribute('type', 'number');
+  priority.setAttribute('class', 'todo-form-priority');
   const completed = document.createElement('input');
   completed.setAttribute('type', 'checkbox');
+  completed.setAttribute('class', 'todo-form-completed');
+  const submit = document.createElement('button');
+  submit.setAttribute('class', 'add-button-for-todo');
+  submit.innerText = 'Add to do';
   form.appendChild(title);
   form.appendChild(description);
   form.appendChild(dueDate);
   form.appendChild(priority);
   form.appendChild(completed);
+  form.appendChild(submit);
   body.appendChild(form);
 };
 

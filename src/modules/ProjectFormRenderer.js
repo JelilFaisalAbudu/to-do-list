@@ -2,6 +2,8 @@ import projectFormUI from './projectFormUI';
 import Project from './AddToProject';
 import ProjectUI from './Project';
 import toDoForm from './toDoForm';
+import Todo from './addToDo';
+import ToDoUI from './ToDoUI';
 
 function renderer() {
   projectFormUI();
@@ -20,6 +22,18 @@ function renderer() {
       const addToDoBtn = document.querySelector('.add-todo-btn');
       addToDoBtn.addEventListener('click', () => {
         toDoForm();
+
+        const addButtonForTodo = document.querySelector('.add-button-for-todo');
+        addButtonForTodo.addEventListener('click', (e) => {
+          e.preventDefault();
+          const todoFormTitle = document.querySelector('.todo-form-title').value;
+          const todoFormDescription = document.querySelector('.todo-form-description').value;
+          const todoFormDate = document.querySelector('.todo-form-duedate').value;
+          const todoFormPriority = document.querySelector('.todo-form-priority').value;
+          const todoFormCompleted = document.querySelector('.todo-form-completed').value;
+          const newTodo = new Todo(todoFormTitle, todoFormDescription, todoFormDate, todoFormPriority, todoFormCompleted);
+          ToDoUI(newTodo);
+        });
       });
     });
   }

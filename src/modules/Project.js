@@ -4,7 +4,7 @@ function ProjectUI(project) {
   const secondP = document.createElement('p');
   const firstDiv = document.createElement('div');
   const addToDoBtn = document.createElement('button');
-  addToDoBtn.innerText = 'Add To Do';
+  addToDoBtn.innerText = 'Create a To Do';
   addToDoBtn.setAttribute('class', 'add-todo-btn');
   firstP.innerText = `The project Title is: ${project.title}`;
   secondP.innerText = `The project description is: ${project.description}`;
