@@ -1,5 +1,5 @@
 const toDoForm = () => {
-  const body = document.querySelector('body')
+  const body = document.querySelector('body');
   const form = document.createElement('form');
   const title = document.createElement('input');
   title.setAttribute('type', 'text');
@@ -16,7 +16,7 @@ const toDoForm = () => {
   form.appendChild(dueDate);
   form.appendChild(priority);
   form.appendChild(completed);
-  body.appendChild(form)
+  body.appendChild(form);
 };
 
 export default toDoForm;
