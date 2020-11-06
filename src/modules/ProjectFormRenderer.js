@@ -32,6 +32,7 @@ function renderer() {
           const todoFormPriority = document.querySelector('.todo-form-priority').value;
           const todoFormCompleted = document.querySelector('.todo-form-completed').value;
           const newTodo = new Todo(todoFormTitle, todoFormDescription, todoFormDate, todoFormPriority, todoFormCompleted);
+          newProject.toDoList.push(newTodo);
           ToDoUI(newTodo);
         });
       });
