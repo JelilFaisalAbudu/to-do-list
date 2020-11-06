@@ -1,7 +1,24 @@
-const Projects = (title, description, todo) => {
-  this.title = title;
-  this.description = description;
-  this.todo = todo;
-};
+class Project {
+  constructor(title) {
+    this.title = title;
+    this.toDoList = [];
+  }
 
-export default Projects;
+  getTitle() {
+    return this.title;
+  }
+
+  removeToDo(index) {
+    this.toDoList.splice(index, 1);
+  }
+
+  getToDoList() {
+    return this.toDoList;
+  }
+
+  addToDo(toDo) {
+    this.toDoList.push(toDo);
+  }
+}
+
+export default Project;
