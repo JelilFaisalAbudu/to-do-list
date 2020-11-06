@@ -1,11 +1,16 @@
 class Project {
-  constructor(title) {
+  constructor(title, description) {
     this.title = title;
+    this.description = description;
     this.toDoList = [];
   }
 
   getTitle() {
     return this.title;
+  }
+
+  getDescription() {
+    return this.description;
   }
 
   removeToDo(index) {
