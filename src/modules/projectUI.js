@@ -1,6 +1,7 @@
 import Project from './Projects';
 
 const projectUI = () => {
+  const body = document.querySelector('body');
   const input = document.createElement('input');
   input.setAttribute('type', 'text');
   input.classList.add('form-control');
@@ -16,14 +17,7 @@ const projectUI = () => {
   const form = document.createElement('form');
   form.appendChild(label);
   form.appendChild(submit);
-
-  const inputVal = null;
-  form.addEventListener('submit', () => {
-    inputVal = input.value;
-    const newProject = new Project(inputVal);
-    projectsArr.push(newProject);
-  });
-
+  body.appendChild(form);
 };
 
 export default projectUI;

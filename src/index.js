@@ -1,4 +1,6 @@
 import './index.scss';
-import ToDo from './modules/Todo';
-import Projects from './modules/Projects';
+import renderer from './modules/ToDoUI';
 
+
+let body = document.querySelector('.new-project-btn');
+body.addEventListener('click', renderer);
