@@ -5,6 +5,7 @@ import toDoForm from './toDoForm';
 import Todo from './addToDo';
 import ToDoUI from './ToDoUI';
 
+let projects = [];
 function renderer() {
   projectFormUI();
   document.querySelector('.new-project-btn').remove();
@@ -17,11 +18,13 @@ function renderer() {
       const projectTitle = document.querySelector('.form-control').value;
       const projectDescription = document.querySelectorAll('.form-control')[1].value;
       const newProject = new Project(projectTitle, projectDescription);
+      projects.push(newProject);
       ProjectUI(newProject);
 
       document.querySelectorAll('.add-todo-btn').forEach(todo => {
         todo.addEventListener('click', () => {
           toDoForm();
+          todo.remove();
           document.querySelectorAll('.add-button-for-todo').forEach((item) => {
             item.addEventListener('click', (e) => {
               e.preventDefault();
