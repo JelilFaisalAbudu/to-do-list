@@ -19,21 +19,28 @@ function renderer() {
       const newProject = new Project(projectTitle, projectDescription);
       ProjectUI(newProject);
 
-      const addToDoBtn = document.querySelector('.add-todo-btn');
-      addToDoBtn.addEventListener('click', () => {
-        toDoForm();
-
-        const addButtonForTodo = document.querySelector('.add-button-for-todo');
-        addButtonForTodo.addEventListener('click', (e) => {
-          e.preventDefault();
-          const todoFormTitle = document.querySelector('.todo-form-title').value;
-          const todoFormDescription = document.querySelector('.todo-form-description').value;
-          const todoFormDate = document.querySelector('.todo-form-duedate').value;
-          const todoFormPriority = document.querySelector('.todo-form-priority').value;
-          const todoFormCompleted = document.querySelector('.todo-form-completed').value;
-          const newTodo = new Todo(todoFormTitle, todoFormDescription, todoFormDate, todoFormPriority, todoFormCompleted);
-          newProject.toDoList.push(newTodo);
-          ToDoUI(newTodo);
+      document.querySelectorAll('.add-todo-btn').forEach(todo => {
+        todo.addEventListener('click', () => {
+          toDoForm();
+          document.querySelectorAll('.add-button-for-todo').forEach((item) => {
+            item.addEventListener('click', (e) => {
+              e.preventDefault();
+              const todoFormTitle = document.querySelector('.todo-form-title').value;
+              const todoFormDescription = document.querySelector('.todo-form-description').value;
+              const todoFormDate = document.querySelector('.todo-form-duedate').value;
+              const todoFormPriority = document.querySelector('.todo-form-priority').value;
+              const todoFormCompleted = document.querySelector('.todo-form-completed').value;
+              const newTodo = new Todo(
+                todoFormTitle,
+                todoFormDescription,
+                todoFormDate,
+                todoFormPriority,
+                todoFormCompleted
+                              );
+              newProject.toDoList.push(newTodo);
+              ToDoUI(newTodo);
+            });
+          });
         });
       });
     });
