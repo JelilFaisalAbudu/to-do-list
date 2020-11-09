@@ -17,6 +17,7 @@ function ToDoUI(project) {
   firstDiv.appendChild(thirddP);
   firstDiv.appendChild(fourthdP);
   firstDiv.appendChild(fifthdP);
+  firstDiv.setAttribute('class', 'todo-ui');
   body.appendChild(firstDiv);
 }
 

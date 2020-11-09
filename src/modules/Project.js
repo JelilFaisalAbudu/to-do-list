@@ -1,3 +1,4 @@
+let i = 0;
 function ProjectUI(project) {
   const body = document.querySelector('body');
   const firstP = document.createElement('p');
@@ -11,6 +12,8 @@ function ProjectUI(project) {
   firstDiv.appendChild(firstP);
   firstDiv.appendChild(secondP);
   firstDiv.appendChild(addToDoBtn);
+  firstDiv.setAttribute('id', `${i += 1}`);
+  firstDiv.setAttribute('class', 'project-ui');
   body.appendChild(firstDiv);
 }
 

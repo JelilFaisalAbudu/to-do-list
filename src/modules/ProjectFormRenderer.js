@@ -8,10 +8,9 @@ import ToDoUI from './ToDoUI';
 let projects = [];
 function renderer() {
   projectFormUI();
-  document.querySelector('.new-project-btn').remove();
 
   const createBtn = document.querySelector('.submit-btn');
-
+  
   if (document.querySelector('.project-form')) {
     createBtn.addEventListener('click', (e) => {
       e.preventDefault();
@@ -20,7 +19,7 @@ function renderer() {
       const newProject = new Project(projectTitle, projectDescription);
       projects.push(newProject);
       ProjectUI(newProject);
-
+      document.querySelector('.project-form').remove()
       document.querySelectorAll('.add-todo-btn').forEach(todo => {
         todo.addEventListener('click', () => {
           toDoForm();
