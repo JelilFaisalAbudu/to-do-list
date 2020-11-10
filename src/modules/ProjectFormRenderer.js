@@ -15,9 +15,9 @@ const loadLocalStorage = () => {
 };
 
 const renderProjects = (projects) => {
-  const projectContainer = document.querySelector('.project-container');
-  projectContainer.innerHTML = '';
   projects.forEach(project => {
+    const projectContainer = document.querySelector('.project-container');
+    projectContainer.innerHTML = '';
     const list = document.createElement('div');
     list.classList.add('list-item');
     list.innerText = project.title;
@@ -25,9 +25,23 @@ const renderProjects = (projects) => {
   });
 };
 
+const renderTodos = (projects) => {
+  const projectContainer = document.querySelector('.project-list-container');
+  projectContainer.innerHTML = '';
+  projects.forEach(project => {
+    project.toDoList.forEach(item => {
+      const list = document.createElement('div');
+      list.classList.add('list-item');
+      list.innerText = item.title;
+      projectContainer.appendChild(list);
+    });
+  });
+};
+
 window.addEventListener('load', () => {
   loadLocalStorage();
   renderProjects(projects);
+  // renderTodos(projects);
 });
 
 function renderer() {
@@ -41,9 +55,10 @@ function renderer() {
       const projectTitle = document.querySelector('.form-control').value;
       const projectDescription = document.querySelectorAll('.form-control')[1].value;
       const newProject = new Project(projectTitle, projectDescription);
+
       renderProjects(projects);
       ProjectUI(newProject);
-      document.querySelector('.project-form').remove()
+      document.querySelector('.project-form').remove();
       document.querySelectorAll('.add-todo-btn').forEach(todo => {
         todo.addEventListener('click', () => {
           toDoForm();
@@ -55,7 +70,7 @@ function renderer() {
               const todoFormDescription = document.querySelector('.todo-form-description').value;
               const todoFormDate = document.querySelector('.todo-form-duedate').value;
               const todoFormPriority = document.querySelector('.todo-form-priority').value;
-              const todoFormCompleted = document.querySelector('.todo-form-completed').value;
+              const todoFormCompleted = document.querySelector('.todo-form-completed').checked;
               const newTodo = new Todo(
                 todoFormTitle,
                 todoFormDescription,

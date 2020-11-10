@@ -5,10 +5,12 @@
 
 .project-container {
   flex-basis: 10%;
+  margin-right: 200px;
 }
 
 .project-list-container {
   flex-grow: 1;
+  display: flex;
 }
 
 .new-project-btn {
