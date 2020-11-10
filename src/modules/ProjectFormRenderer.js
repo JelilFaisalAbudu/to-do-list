@@ -6,18 +6,42 @@ import Todo from './addToDo';
 import ToDoUI from './ToDoUI';
 
 let projects = [];
+const loadLocalStorage = () => {
+  if (localStorage.getItem('myToDoProjects', JSON.stringify(projects))) {
+    projects = JSON.parse(localStorage.getItem('myToDoProjects'));
+  } else {
+    projects = [];
+  }
+};
+
+const renderProjects = (projects) => {
+  const projectContainer = document.querySelector('.project-container');
+  projectContainer.innerHTML = '';
+  projects.forEach(project => {
+    const list = document.createElement('div');
+    list.classList.add('list-item');
+    list.innerText = project.title;
+    projectContainer.appendChild(list);
+  });
+};
+
+window.addEventListener('load', () => {
+  loadLocalStorage();
+  renderProjects(projects);
+});
+
 function renderer() {
   projectFormUI();
-
+  loadLocalStorage();
   const createBtn = document.querySelector('.submit-btn');
-  
+
   if (document.querySelector('.project-form')) {
     createBtn.addEventListener('click', (e) => {
       e.preventDefault();
       const projectTitle = document.querySelector('.form-control').value;
       const projectDescription = document.querySelectorAll('.form-control')[1].value;
       const newProject = new Project(projectTitle, projectDescription);
-      projects.push(newProject);
+      renderProjects(projects);
       ProjectUI(newProject);
       document.querySelector('.project-form').remove()
       document.querySelectorAll('.add-todo-btn').forEach(todo => {
@@ -37,9 +61,11 @@ function renderer() {
                 todoFormDescription,
                 todoFormDate,
                 todoFormPriority,
-                todoFormCompleted
-                              );
+                todoFormCompleted,
+              );
               newProject.toDoList.push(newTodo);
+              projects.push(newProject);
+              localStorage.setItem('myToDoProjects', JSON.stringify(projects));
               ToDoUI(newTodo);
             });
           });
