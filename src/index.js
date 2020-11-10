@@ -1,30 +1,60 @@
 import './index.scss';
-import renderer from './modules/ProjectFormRenderer';
+import save from './modules/save';
+import variables from './modules/variables';
+import render from './modules/render';
+import Project from './modules/AddToProject';
+import Todo from './modules/addToDo';
 
-const newBtn = document.querySelector('.new-project-btn');
+const newVar = variables();
+const createProject = (title) => new Project(title);
 
+const saveAndRender = () => {
+  save();
+  render(newVar.projectList);
+};
 
+document.querySelector('.new-project-form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const projectTitle = newVar.newProjectTitleInput.value;
 
-newBtn.addEventListener('click', () => {
-  if (document.querySelector('.todo-ui')) {
-    document.querySelectorAll('.todo-ui').forEach((item) => {
-      item.remove();
-    });
+  if (projectTitle === null || projectTitle === '') {
+    return;
   }
-  if (document.querySelector('.project-ui')) {
-    document.querySelectorAll('.project-ui').forEach((item) => {
-      item.remove();
-    });
-  }
-  if (document.querySelector('.project-form')) {
-    document.querySelectorAll('.project-form').forEach((item) => {
-      item.remove();
-    });
-  }
-  if (document.querySelector('.todo-form')) {
-    document.querySelectorAll('.todo-form').forEach((item) => {
-      item.remove();
-    });
+  const newProject = createProject(projectTitle);
+  newVar.newProjectTitleInput.value = null;
+  newVar.projectList.push(newProject);
+  saveAndRender();
+});
+
+document.getElementById('newTodoForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  if (!newVar.selectedProjectId) return;
+  const todoTitle = newVar.newTodoForm.querySelector('#todoTitle').value;
+  const todoDesc = newVar.newTodoForm.querySelector('#todoDesc').value;
+  const todoDueDate = newVar.newTodoForm.querySelector('#todoDueDate').value;
+  const todoPriority = newVar.newTodoForm.querySelector('#todoPriority').value;
+  const newTodo = new Todo(todoTitle, todoDesc, todoDueDate, todoPriority);
+  const selectedProject = newVar.projectList
+    .find(project => project.id === newVar.selectedProjectId);
+  selectedProject.toDoList.push(newTodo);
+  saveAndRender();
+  newVar.newTodoForm.reset();
+});
+
+
+document.querySelector('.project-list').addEventListener('click', (e) => {
+  if (e.target.tagName.toLowerCase() === 'li') {
+    newVar.selectedProjectId = e.target.dataset.listId;
+    saveAndRender();
   }
 });
-newBtn.addEventListener('click', renderer);
+
+document.getElementById('deleteProjectButton').addEventListener('click', () => {
+  const listItem = newVar.projectList.filter(item => item.id === newVar.selectedProjectId);
+  newVar.projectList.splice(newVar.projectList.indexOf(listItem), 1);
+  newVar.selectedProjectId = null;
+  saveAndRender();
+});
+
+
+render();
