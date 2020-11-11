@@ -47,14 +47,20 @@ myVar.newTodoForm.addEventListener('submit', (e) => {
   myVar.newTodoForm.reset();
 });
 
-document.querySelector('.delete-btn').forEach(button => {
-  button.addEventListener('click', (e) => {
-    if (e.target) {
-      const detailsElement = button.closest('details');
-      detailsElement.remove();
-    }
-
-  });
+document.addEventListener('click', (e) => {
+  if (e.target && e.target.className === 'delete-btn') {
+    const details = e.target.closest('details');
+    const detailsId = details.id;
+    const selectedToDo = myVar.selectedProject.toDoList.filter((todo) => todo.id === detailsId);
+    myVar.selectedProject.toDoList.splice(myVar.selectedProject.toDoList.indexOf(selectedToDo), 1);
+    saveAndRender();
+  }
 });
+
+// document.addEventListener('click', (e) => {
+//   if (e.target && e.target.className === 'delete-btn') {
+//     e.target.closest('details')
+//   }
+// });
 
 render();

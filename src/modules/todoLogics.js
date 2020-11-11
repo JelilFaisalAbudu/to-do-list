@@ -35,6 +35,8 @@ const renderToDosCountFor = (selectedProject) => {
 const renderToDoListFor = (selectedProjectId) => {
   selectedProjectId.toDoList.forEach(todo => {
     const toDoElement = document.importNode(myVar.toDoTemplate.content, true);
+    const detailsElement = toDoElement.querySelector('details');
+    detailsElement.id = todo.id;
     const descriptionElement = toDoElement.querySelector('.description');
     descriptionElement.innerText = todo.description;
 
