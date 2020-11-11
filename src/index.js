@@ -1,5 +1,9 @@
 import './index.scss';
-import { saveAndRender, render, myVar } from './modules/todoLogics';
+import {
+  saveAndRender,
+  render,
+  myVar
+} from './modules/todoLogics';
 import Project from './modules/AddToProject';
 import Todo from './modules/addToDo';
 
@@ -51,16 +55,33 @@ document.addEventListener('click', (e) => {
   if (e.target && e.target.className === 'delete-btn') {
     const details = e.target.closest('details');
     const detailsId = details.id;
-    const selectedToDo = myVar.selectedProject.toDoList.filter((todo) => todo.id === detailsId);
-    myVar.selectedProject.toDoList.splice(myVar.selectedProject.toDoList.indexOf(selectedToDo), 1);
+    const selectedProject = myVar.projectList
+      .find(project => project.id === myVar.selectedProjectId);
+    const todo = selectedProject.toDoList.filter(todo => todo.id === detailsId);
+    selectedProject.toDoList.splice(selectedProject.toDoList.indexOf(todo), 1);
     saveAndRender();
   }
 });
 
-// document.addEventListener('click', (e) => {
-//   if (e.target && e.target.className === 'delete-btn') {
-//     e.target.closest('details')
-//   }
-// });
+document.addEventListener('click', (e) => {
+  if (e.target && e.target.className === 'edit-btn') {
+    const details = e.target.closest('details');
+    const detailsId = details.id;
+    const selectedProject = myVar.projectList
+      .find(project => project.id === myVar.selectedProjectId);
+    const todo = selectedProject.toDoList.filter(todo => todo.id === detailsId);
+    myVar.newTodoForm.addEventListener('submit', () => {
+      e.preventDefault();
+      if (!myVar.selectedProjectId) return;
+      const todoTitle = myVar.newTodoForm.querySelector('#todoTitle').value;
+      const todoDesc = myVar.newTodoForm.querySelector('#todoDesc').value;
+      const todoDueDate = myVar.newTodoForm.querySelector('#todoDueDate').value;
+      const todoPriority = myVar.newTodoForm.querySelector('#todoPriority').value;
+      todo.edit(todoTitle, todoDesc, todoDueDate, todoPriority);
+      myVar.newTodoForm.reset();
+    })
+    saveAndRender();
+  }
+});
 
 render();
