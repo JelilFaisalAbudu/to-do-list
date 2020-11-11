@@ -4,6 +4,7 @@ const variables = () => {
   const newProjectTitleInput = document.querySelector('.new-project-title-input');
   const deleteListButton = document.getElementById('deleteProjectButton');
   const toDoTemplate = document.getElementById('toDoTemplate');
+  const todoDetailTemplate = document.getElementById('todoDetail');
   const toDoListDisplayContainer = document.getElementById('toDoListDisplayContainer');
   const toDoTasksContainer = toDoListDisplayContainer.querySelector('.to-do-tasks-container');
   const toDoTitleElement =
@@ -20,6 +21,7 @@ const variables = () => {
     newProjectTitleInput,
     deleteListButton,
     toDoTemplate,
+    todoDetailTemplate,
     toDoTasksContainer,
     toDoTitleElement,
     toDosCountElement,

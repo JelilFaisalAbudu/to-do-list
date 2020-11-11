@@ -27,14 +27,11 @@
           <span>+</span>
         </div>
         <div>
-          <h2 class="to-do-title">My Selected Project Title</h2>
-          <p class="to-dos-count">4 items remaining</p>
+          <h2 class="to-do-title"></h2>
+          <p class="to-dos-count"></p>
         </div>
       </div>
       <div class="to-dos-container">
-        <div class="task">Task 1</div>
-        <div class="task">Task 2</div>
-        <div class="task">Task 3</div>
       </div>
     </div>
   </div>
@@ -83,16 +80,21 @@
   </div>
   <template id="toDoTemplate">
     <div class="to-do">
-      <label>
-        <input type="checkbox" class="checkbox">
-      </label>
-      <p class="description"></p>
-      <p class="due-date"></p>
-      <p class="priority"></p>
+      <details>
+        
+        <summary>
+          <label>
+            <input type="checkbox" class="checkbox">
+          </label>
+          <button class="delete-btn">DelBtn</button>
+          <button class="edit-btn">EditBtn</button>
+        </summary>
+        <p class="description"></p>
+        <p class="due-date"></p>
+        <p class="priority"></p>
+      </details>
     </div>
   </template>
   <script src="main.js"></script>
-  <!-- <script src="../src/modules/common.js"></script> -->
-  <!-- <script src="../src/index.js"></script> -->
 </body>
 </html>

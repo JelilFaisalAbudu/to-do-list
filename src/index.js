@@ -47,4 +47,14 @@ myVar.newTodoForm.addEventListener('submit', (e) => {
   myVar.newTodoForm.reset();
 });
 
+document.querySelector('.delete-btn').forEach(button => {
+  button.addEventListener('click', (e) => {
+    if (e.target) {
+      const detailsElement = button.closest('details');
+      detailsElement.remove();
+    }
+
+  });
+});
+
 render();
