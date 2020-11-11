@@ -69,18 +69,26 @@ document.addEventListener('click', (e) => {
     const detailsId = details.id;
     const selectedProject = myVar.projectList
       .find(project => project.id === myVar.selectedProjectId);
-    const todo = selectedProject.toDoList.filter(todo => todo.id === detailsId);
+    const todo = selectedProject.toDoList.find(todo => todo.id === detailsId);
+    console.log(todo);
+    myVar.newTodoForm.querySelector('#todoTitle').value = todo.title;
+    myVar.newTodoForm.querySelector('#todoDesc').value = todo.description;
+    myVar.newTodoForm.querySelector('#todoDueDate').value = todo.DueDate;
+    myVar.newTodoForm.querySelector('#todoPriority').value = todo.priority;
+
     myVar.newTodoForm.addEventListener('submit', () => {
       e.preventDefault();
       if (!myVar.selectedProjectId) return;
+
+
       const todoTitle = myVar.newTodoForm.querySelector('#todoTitle').value;
       const todoDesc = myVar.newTodoForm.querySelector('#todoDesc').value;
       const todoDueDate = myVar.newTodoForm.querySelector('#todoDueDate').value;
       const todoPriority = myVar.newTodoForm.querySelector('#todoPriority').value;
       todo.edit(todoTitle, todoDesc, todoDueDate, todoPriority);
       myVar.newTodoForm.reset();
-    })
-    saveAndRender();
+      saveAndRender();
+    });
   }
 });
 
