@@ -1,59 +1,50 @@
 import './index.scss';
-import save from './modules/save';
-import variables from './modules/variables';
-import render from './modules/render';
+import { saveAndRender, render, myVar } from './modules/todoLogics';
 import Project from './modules/AddToProject';
 import Todo from './modules/addToDo';
 
-const newVar = variables();
 const createProject = (title) => new Project(title);
-const saveAndRender = () => {
-  save();
-  render(newVar.projectList);
-};
 
-newVar.newProjectForm.addEventListener('submit', (e) => {
+myVar.projectListContainer.addEventListener('click', (e) => {
+  if (e.target.tagName.toLowerCase() === 'li') {
+    myVar.selectedProjectId = e.target.dataset.listId;
+    saveAndRender();
+  }
+});
+
+myVar.deleteListButton.addEventListener('click', () => {
+  const listItem = myVar.projectList.filter(item => item.id === myVar.selectedProjectId);
+  myVar.projectList.splice(myVar.projectList.indexOf(listItem), 1);
+  myVar.selectedProjectId = null;
+  saveAndRender();
+});
+
+myVar.newProjectForm.addEventListener('submit', (e) => {
   e.preventDefault();
-  const projectTitle = newVar.newProjectTitleInput.value;
+  const projectTitle = myVar.newProjectTitleInput.value;
 
   if (projectTitle === null || projectTitle === '') {
     return;
   }
   const newProject = createProject(projectTitle);
-  newVar.newProjectTitleInput.value = null;
-  newVar.projectList.push(newProject);
+  myVar.newProjectTitleInput.value = null;
+  myVar.projectList.push(newProject);
   saveAndRender();
 });
 
-newVar.newTodoForm.addEventListener('submit', (e) => {
+
+myVar.newTodoForm.addEventListener('submit', (e) => {
   e.preventDefault();
-  if (!newVar.selectedProjectId) return;
-  const todoTitle = newVar.newTodoForm.querySelector('#todoTitle').value;
-  const todoDesc = newVar.newTodoForm.querySelector('#todoDesc').value;
-  const todoDueDate = newVar.newTodoForm.querySelector('#todoDueDate').value;
-  const todoPriority = newVar.newTodoForm.querySelector('#todoPriority').value;
+  if (!myVar.selectedProjectId) return;
+  const todoTitle = myVar.newTodoForm.querySelector('#todoTitle').value;
+  const todoDesc = myVar.newTodoForm.querySelector('#todoDesc').value;
+  const todoDueDate = myVar.newTodoForm.querySelector('#todoDueDate').value;
+  const todoPriority = myVar.newTodoForm.querySelector('#todoPriority').value;
   const newTodo = new Todo(todoTitle, todoDesc, todoDueDate, todoPriority);
-  const selectedProject = newVar.projectList
-    .find(project => project.id === newVar.selectedProjectId);
+  const selectedProject = myVar.projectList.find(project => project.id === myVar.selectedProjectId);
   selectedProject.toDoList.push(newTodo);
   saveAndRender();
-  newVar.newTodoForm.reset();
+  myVar.newTodoForm.reset();
 });
-
-
-newVar.projectList.addEventListener('click', (e) => {
-  if (e.target.tagName.toLowerCase() === 'li') {
-    newVar.selectedProjectId = e.target.dataset.listId;
-    saveAndRender();
-  }
-});
-
-newVar.deleteListButton.addEventListener('click', () => {
-  const listItem = newVar.projectList.filter(item => item.id === newVar.selectedProjectId);
-  newVar.projectList.splice(newVar.projectList.indexOf(listItem), 1);
-  newVar.selectedProjectId = null;
-  saveAndRender();
-});
-
 
 render();

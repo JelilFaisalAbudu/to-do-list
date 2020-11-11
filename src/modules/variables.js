@@ -6,7 +6,8 @@ const variables = () => {
   const toDoTemplate = document.getElementById('toDoTemplate');
   const toDoListDisplayContainer = document.getElementById('toDoListDisplayContainer');
   const toDoTasksContainer = toDoListDisplayContainer.querySelector('.to-do-tasks-container');
-  const toDoTitleElement = toDoListDisplayContainer.querySelector('.to-do-title');
+  const toDoTitleElement =
+  toDoListDisplayContainer.querySelector('.to-do-title');
   const toDosCountElement = toDoListDisplayContainer.querySelector('.to-dos-count');
   const LOCAL_STORAGE_PROJECTS_KEY = 'todo.list';
   const projectList = JSON.parse(localStorage.getItem(LOCAL_STORAGE_PROJECTS_KEY)) || [];
