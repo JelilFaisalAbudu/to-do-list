@@ -24,6 +24,12 @@ To get this project up and running locally, you must have node installed on your
 - Next run ```npm install``` to install the necessary dependencies<br>
 - Finally run the 'index.html' with 'Live Server' to start the application.<br>
 
+**Usage**
+- First you need to click the hamburger menu and then create a new project for yourself.
+- Next click on the project to select it and click the new task to create a to-do.
+- After the submission of the to-do form, you can delete or edit it via the buttons next to it.
+- If you want you can change the status of the todo from not-completed to completed.
+
 ## Authors
 
 👤 **Eyüp Sercan UYGUR**
