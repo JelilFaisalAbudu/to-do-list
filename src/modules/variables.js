@@ -12,6 +12,7 @@ const variables = () => {
   const toDoTitleElement =
   toDoListDisplayContainer.querySelector('.to-do-title');
   const toDosCountElement = toDoListDisplayContainer.querySelector('.to-dos-count');
+  const checkboxes = document.querySelectorAll('.checkbox');
   const LOCAL_STORAGE_PROJECTS_KEY = 'todo.list';
   const projectList = JSON.parse(localStorage.getItem(LOCAL_STORAGE_PROJECTS_KEY)) || [];
   const projectListContainer = document.querySelector('.project-list');
@@ -35,6 +36,7 @@ const variables = () => {
     toDoListDisplayContainer,
     todosContainerElement,
     editTodoForm,
+    checkboxes,
   };
 };
 
