@@ -95,13 +95,12 @@ document.addEventListener('click', (e) => {
 document.addEventListener('click', (e) => {
   if (e.target && e.target.className === 'checkbox') {
     const details = e.target.closest('details');
-    console.log(e.target.value);
     const detailsId = details.id;
     const selectedProject = myVar.projectList
       .find(project => project.id === myVar.selectedProjectId);
     const todo = selectedProject.toDoList.find(todo => todo.id === detailsId);
     const item = selectedProject.toDoList.find(item => item.id === todo.id);
-    // item.complete = e.target.value;
+    item.complete = !item.complete;
     saveAndRender();
   }
 });
