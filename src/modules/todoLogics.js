@@ -54,7 +54,7 @@ const renderToDoListFor = (selectedProjectId) => {
     const label = toDoElement.querySelector('label');
     label.htmlFor = todo.id;
     label.append(todo.title);
-    myVar.toDoListDisplayContainer.appendChild(toDoElement);
+    myVar.todosContainerElement.appendChild(toDoElement);
   });
 };
 
@@ -64,12 +64,12 @@ const render = () => {
   const selectedProject = myVar.projectList.find(project => project.id === myVar.selectedProjectId);
 
   if (myVar.selectedProjectId === null) {
-    myVar.toDoListDisplayContainer.classList.add('hide');
+    myVar.todosContainerElement.classList.add('hide');
   } else {
-    myVar.toDoListDisplayContainer.classList.remove('hide');
+    myVar.todosContainerElement.classList.remove('hide');
     myVar.toDoTitleElement.innerText = selectedProject.title;
     renderToDosCountFor(selectedProject);
-    clearElement(myVar.toDoListDisplayContainer);
+    clearElement(myVar.todosContainerElement);
     renderToDoListFor(selectedProject);
   }
 };

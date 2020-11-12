@@ -2,17 +2,21 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Output Management</title>
+  <title>To-Do-List</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 </head>
 <body>
-  <span style="font-size:30px;cursor:pointer" class="sidenav-toggler">&#9776; open</span>
+  <span style="font-size:30px;cursor:pointer" class="open-project-container">&#9776; open</span>
   <div id="content" class="content">
     <div id="projectContainer" class="project-container">
       <div class="project-inner-wrapper">
-        <span class="close-btn">&times;</span>
-        <span: id="newProjectFormToggler">New</span:>
+        <span class="close-project-container-btn">&times;</span>
+        <div class="project-form-opener" data-toggle="modal" data-target="#projectForm">
+          <span class=" ">New</span>
+          <span class=" ">&plus;</span>
+        </div>
         <h2>Projects</h2>
         <ul class="project-list">
         </ul>
@@ -20,11 +24,11 @@
     </div>
     <div id="toDoListDisplayContainer" class="to-do-list-display-container">
       <div class="to-do-header">
-        <div>
+        <div class="new-to-do-form-opener" data-toggle="modal" data-target="#todoForm">
           <span>
             New Task
           </span>
-          <span>+</span>
+          <span>&plus;</span>
         </div>
         <div>
           <h2 class="to-do-title"></h2>
@@ -35,67 +39,155 @@
       </div>
     </div>
   </div>
-  <div class="form-wrapper project-form-wrapper">
-    <span class="close-form-btn">X</span>
-    <form id="newProjectForm" class="new-project-form">
-      <div class="form-group">
-        <label for="projectTitle">Project title</label>
-        <input type="text" id="projectTitle" class="form-control new-project-title-input">
-        <div class="form-group">
-          <button type="submit" class="btn btn-submit">Add</button>
+
+  <div class="modal fade" id="projectForm" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="projectFormLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="projectFormLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="newProjectForm" class="new-project-form">
+            <div class="form-group">
+              <label for="projectTitle">Project title</label>
+              <input type="text" id="projectTitle" class="form-control new-project-title-input">
+              <div class="form-group">
+                <button type="submit" class="btn btn-submit">Add</button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
-    </form>
+    </div>
   </div>
-  <div class="form-wrapper to-do-form-wrapper">
-    <span class="close-form-btn">X</span>
-    <form action="" id="newTodoForm" class="new-todo-form">
-      <div class="form-group">
-        <label for="todoTitle">Title</label>
-        <input type="text" class="form-control" id="todoTitle" required>
+
+  <!-- Modal for to-do form -->
+  <div class="modal fade" id="todoForm" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="todoFormLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="todoFormLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="" id="newTodoForm" class="new-todo-form">
+            <div class="form-group">
+              <label for="todoTitle">Title</label>
+              <input type="text" class="form-control" id="todoTitle" required>
+            </div>
+            <div class="form-group">
+              <label for="todoDesc">Description</label>
+              <input type="text" class="form-control" id="todoDesc" required>
+            </div>
+            <div class="form-group">
+              <label for="todoDueDate">Due Date</label>
+              <input type="date" class="form-control" id="todoDueDate" required>
+            </div>
+            <div class="form-group">
+              <label for="todoPriority">Priority</label>
+              <select id="todoPriority" name="priorities">
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <button type="submit">Add</button>
+            </div>
+          </form>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="todoDesc">Description</label>
-        <input type="text" class="form-control" id="todoDesc" required>
-      </div>
-      <div class="form-group">
-        <label for="todoDueDate">Due Date</label>
-        <input type="date" class="form-control" id="todoDueDate" required>
-      </div>
-      <div class="form-group">
-        <label for="todoPriority">Priority</label>
-        <select id="todoPriority" name="priorities">
-          <option value="high">High</option>
-          <option value="medium">Medium</option>
-          <option value="low">Low</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <button type="submit">Add</button>
-      </div>
-    </form>
+    </div>
   </div>
+
+  <!-- Modal for edit to-do form -->
+  <div class="modal fade" id="editTodoForm" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="todoFormLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="todoFormLabel">Edit Task</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="" id="editTodoFormEl" class="edit-todo-form">
+            <div class="form-group">
+              <label for="editTodoTitle">Title</label>
+              <input type="text" class="form-control" id="editTodoTitle" required>
+            </div>
+            <div class="form-group">
+              <label for="editTodoDesc">Description</label>
+              <input type="text" class="form-control" id="editTodoDesc" required>
+            </div>
+            <div class="form-group">
+              <label for="editTodoDueDate">Due Date</label>
+              <input type="date" class="form-control" id="editTodoDueDate" required>
+            </div>
+            <div class="form-group">
+              <label for="editTodoPriority">Priority</label>
+              <select id="editTodoPriority" name="priorities">
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="real-edit-button">Save Edit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="delete-stuff">
     <button class="btn delete" id="deleteProjectButton">Delete Project</button>
   </div>
   <template id="toDoTemplate">
     <div class="to-do">
       <details>
-        
         <summary>
           <label>
             <input type="checkbox" class="checkbox">
           </label>
           <button class="delete-btn">DelBtn</button>
-          <button class="edit-btn">Open Edit Form</button>
-          <button class="real-edit-button">Edit Project</button>
+          <button class="edit-btn" data-toggle="modal" data-target="#editTodoForm">Open Edit </button>
         </summary>
-        <p class="description"></p>
-        <p class="due-date"></p>
-        <p class="priority"></p>
+        <div class="details-section">
+          <div class="info">
+            <span class="sub-label">Description: </span>
+            <p class="description"></p>
+          </div>
+          <div class="info">
+            <div class="sub-label">Due Date: </div>
+            <p class="due-date"></p>
+          </div>
+        </div>
+        <div class="info">
+          <div class="sub-label">Priority: </div>
+          <p class="priority"></p>
+        </div>
       </details>
     </div>
   </template>
   <script src="main.js"></script>
+
+  <!-- jQuery and JS bundle w/ Popper.js -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
+  </script>
 </body>
+
 </html>
