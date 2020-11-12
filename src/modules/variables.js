@@ -9,8 +9,7 @@ const variables = () => {
   const toDoListDisplayContainer = document.getElementById('toDoListDisplayContainer');
   const todosContainerElement = document.querySelector('.to-dos-container');
   const toDoTasksContainer = toDoListDisplayContainer.querySelector('.to-do-tasks-container');
-  const toDoTitleElement =
-  toDoListDisplayContainer.querySelector('.to-do-title');
+  const toDoTitleElement = toDoListDisplayContainer.querySelector('.to-do-title');
   const toDosCountElement = toDoListDisplayContainer.querySelector('.to-dos-count');
   const checkboxes = document.querySelectorAll('.checkbox');
   const LOCAL_STORAGE_PROJECTS_KEY = 'todo.list';
