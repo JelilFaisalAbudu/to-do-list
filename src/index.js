@@ -75,21 +75,26 @@ document.addEventListener('click', (e) => {
     myVar.editTodoForm.querySelector('#editTodoDesc').value = todo.description;
     myVar.editTodoForm.querySelector('#editTodoDueDate').value = todo.dueDate;
     myVar.editTodoForm.querySelector('#editTodoPriority').value = todo.priority;
-
-    document.querySelector('#editTodoFormEl').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const todoTitle = myVar.editTodoForm.querySelector('#editTodoTitle').value;
-      const todoDesc = myVar.editTodoForm.querySelector('#editTodoDesc').value;
-      const todoDueDate = myVar.editTodoForm.querySelector('#editTodoDueDate').value;
-      const todoPriority = myVar.editTodoForm.querySelector('#editTodoPriority').value;
-      todo.title = todoTitle;
-      todo.description = todoDesc;
-      todo.dueDate = todoDueDate;
-      todo.priority = todoPriority;
-      myVar.editTodoForm.reset();
-      saveAndRender();
-    });
+    myVar.editTodoForm.parentElement.setAttribute('id', detailsId);
   }
+});
+
+document.querySelector('#editTodoFormEl').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const selectedProject = myVar.projectList
+    .find(project => project.id === myVar.selectedProjectId);
+  const todo = selectedProject.toDoList
+    .find(todo => todo.id === myVar.editTodoForm.parentElement.id);
+  const todoTitle = myVar.editTodoForm.querySelector('#editTodoTitle').value;
+  const todoDesc = myVar.editTodoForm.querySelector('#editTodoDesc').value;
+  const todoDueDate = myVar.editTodoForm.querySelector('#editTodoDueDate').value;
+  const todoPriority = myVar.editTodoForm.querySelector('#editTodoPriority').value;
+  todo.title = todoTitle;
+  todo.description = todoDesc;
+  todo.dueDate = todoDueDate;
+  todo.priority = todoPriority;
+  myVar.editTodoForm.reset();
+  saveAndRender();
 });
 
 document.addEventListener('click', (e) => {
