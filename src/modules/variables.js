@@ -13,7 +13,7 @@ const variables = () => {
   const toDosCountElement = toDoListDisplayContainer.querySelector('.to-dos-count');
   const checkboxes = document.querySelectorAll('.checkbox');
   const LOCAL_STORAGE_PROJECTS_KEY = 'todo.list';
-  const projectList = JSON.parse(localStorage.getItem(LOCAL_STORAGE_PROJECTS_KEY)) || [];
+  const projectList = JSON.parse(localStorage.getItem(LOCAL_STORAGE_PROJECTS_KEY)) || [{ id: '1603023086264', title: 'Default ', toDoList: [] }];
   const projectListContainer = document.querySelector('.project-list');
   const LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY = 'todo.selectedProjectId';
   const selectedProjectId = localStorage.getItem(LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY);

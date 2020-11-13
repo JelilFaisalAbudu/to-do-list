@@ -48,7 +48,6 @@ const renderToDoListFor = (selectedProjectId) => {
 
 
     const checkbox = toDoElement.querySelector('.checkbox');
-    // checkbox.id = todo.id;
     checkbox.checked = todo.complete;
 
     const label = toDoElement.querySelector('label');
