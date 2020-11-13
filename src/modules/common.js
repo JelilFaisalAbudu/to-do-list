@@ -1,4 +1,3 @@
-const $ = require('jquery');
 
 const toggleProjectContainer = () => {
   const projectContainer = document.getElementById('projectContainer');
@@ -13,15 +12,14 @@ const closeProjectContainerElement = document.querySelector('.close-project-cont
 openProjectContainerElement.addEventListener('click', toggleProjectContainer);
 closeProjectContainerElement.addEventListener('click', toggleProjectContainer);
 
-
-$('#addToDo').click(() => {
-  $('#todoForm').modal('hide');
-});
-
-$('#saveEdit').click(() => {
-  $('#editTodoForm').modal('hide');
-});
-
-$('#submitProject').click(() => {
-  $('#projectForm').modal('hide');
-});
+window.onload = function () {
+  $('#addTodo').click(() => {
+    $('#todoForm').modal('hide');
+  });
+  $('#submitProject').click(() => {
+    $('#projectForm').modal('hide');
+  });
+  $('#saveEdit').click(() => {
+    $('#editTodoForm').modal('hide');
+  });
+};
