@@ -39,6 +39,7 @@
     "webpack-cli": "^4.2.0"
   },
   "dependencies": {
-    "autoprefixer": "^10.0.1"
+    "autoprefixer": "^10.0.1",
+    "jquery": "^3.5.1"
   }
 }
