@@ -7,13 +7,6 @@ class Todo {
     this.priority = priority;
     this.complete = complete;
   }
-
-  edit(title, desc, dueDate, priority) {
-    this.title = title;
-    this.description = desc;
-    this.dueDate = dueDate;
-    this.priority = priority;
-  }
 }
 
 export default Todo;

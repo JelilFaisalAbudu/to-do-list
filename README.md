@@ -30,6 +30,10 @@ To get this project up and running locally, you must have node installed on your
 - After the submission of the to-do form, you can delete or edit it via the buttons next to it.
 - If you want you can change the status of the todo from not-completed to completed.
 
+**Testing**
+- There are some tests with multiple expect blocks that tests the constuctor classes.
+- To run the test just run ```npm run test```.
+
 ## Authors
 
 👤 **Eyüp Sercan UYGUR**
